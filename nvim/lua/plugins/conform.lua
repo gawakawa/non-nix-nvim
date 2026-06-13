@@ -16,13 +16,11 @@ return {
 		require("conform").setup({
 			formatters_by_ft = {
 				lua = { "stylua" },
-				javascript = { "prettier" },
-				typescript = { "prettier" },
-				javascriptreact = { "prettier" },
-				typescriptreact = { "prettier" },
-				json = { "prettier" },
-				jsonc = { "prettier" },
-				python = { "ruff_format", "ruff_organize_imports" },
+				javascript = { "oxfmt" },
+				typescript = { "oxfmt" },
+				javascriptreact = { "oxfmt" },
+				typescriptreact = { "oxfmt" },
+				python = { "ruff_format" },
 				terraform = { "terraform_fmt" },
 			},
 			default_format_opts = {
