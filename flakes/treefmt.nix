@@ -6,6 +6,10 @@ _: {
           enable = true;
           includes = [ "*.nix" ];
         };
+        stylua = {
+          enable = true;
+          includes = [ "*.lua" ];
+        };
       };
     };
   };
