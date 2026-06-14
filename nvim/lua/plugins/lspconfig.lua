@@ -3,8 +3,15 @@ return {
 	event = { "BufReadPre", "BufNewFile" },
 	dependencies = {
 		"hrsh7th/cmp-nvim-lsp",
+		{ "mason-org/mason.nvim", opts = {} },
+		"mason-org/mason-lspconfig.nvim",
 	},
 	config = function()
+		require("mason-lspconfig").setup({
+			ensure_installed = { "ts_ls" },
+			automatic_enable = false, -- vim.lsp.enable below is the sole authority
+		})
+
 		vim.diagnostic.config({
 			virtual_text = false,
 			virtual_lines = {
