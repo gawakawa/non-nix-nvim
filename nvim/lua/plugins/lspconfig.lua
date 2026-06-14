@@ -24,19 +24,15 @@ return {
 		})
 
 		local caps = require("cmp_nvim_lsp").default_capabilities()
+		vim.lsp.config("*", { capabilities = caps })
 
-		vim.lsp.config.ts_ls = { capabilities = caps }
-		vim.lsp.config.basedpyright = { capabilities = caps }
 		vim.lsp.config.ruff = {
-			capabilities = caps,
 			on_attach = function(client)
 				-- delegate hover to basedpyright
 				client.server_capabilities.hoverProvider = false
 			end,
 		}
-		vim.lsp.config.terraformls = { capabilities = caps }
 		vim.lsp.config.lua_ls = {
-			capabilities = caps,
 			settings = {
 				Lua = {
 					diagnostics = {
