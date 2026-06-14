@@ -9,7 +9,12 @@ return {
 			virtual_text = false,
 			virtual_lines = {
 				format = function(diagnostic)
-					return string.format("%s\n(%s: %s)", diagnostic.message, diagnostic.source, diagnostic.code)
+					return string.format(
+						"%s\n(%s: %s)",
+						diagnostic.message,
+						diagnostic.source or "?",
+						diagnostic.code or "?"
+					)
 				end,
 			},
 			signs = true,
