@@ -23,11 +23,12 @@ nix run nixpkgs#neovim -- --headless "+Lazy! install" "+Lazy! clean" +qa || true
 echo "[lazy-sync] done — lock updated at nvim/lazy-lock.json"
 
 if [ "${1:-}" = "--stage" ]; then
-    # Only stage if the file exists (it may not on a fresh clone where sync failed).
-    if [ -f "$REPO/nvim/lazy-lock.json" ]; then
+    if [ ! -f "$REPO/nvim/lazy-lock.json" ]; then
+        echo "[lazy-sync] warning: nvim/lazy-lock.json not found, skipping stage" >&2
+    elif git diff --quiet "$REPO/nvim/lazy-lock.json"; then
+        echo "[lazy-sync] lazy-lock.json unchanged, skipping stage" >&2
+    else
         git add "$REPO/nvim/lazy-lock.json"
         echo "[lazy-sync] lazy-lock.json staged"
-    else
-        echo "[lazy-sync] warning: nvim/lazy-lock.json not found, skipping stage" >&2
     fi
 fi
