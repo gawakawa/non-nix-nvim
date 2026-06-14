@@ -6,7 +6,8 @@ _: {
         config.ciPackages
         ++ config.pre-commit.settings.enabledPackages
         ++ (with pkgs; [
-          # Additional development tools can be added here
+          # Node.js (with npm) for mason to install LSP servers locally
+          nodejs_24
         ]);
     in
     {
